@@ -5,7 +5,7 @@ const { mkdir, readdir } = require('fs/promises');
 let assetsFolder = path.join(__dirname, 'assets');
 let assetsFolderCopy = path.join(__dirname, 'project-dist', 'assets') ;
 const styleFolder = path.join(__dirname, 'styles');
-const styleFolderCopy = path.join(__dirname, 'project-dist', 'style.css ');
+const styleFolderCopy = path.join(__dirname, 'project-dist', 'style.css');
 
 
 async function copyDir(assetsFolder, assetsFolderCopy) {
