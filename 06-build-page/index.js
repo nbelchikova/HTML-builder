@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const { readFile, rm, appendFile, copyFile} = require('fs');
-const { mkdir, readdir } = require('fs/promises');
+const { readFile, appendFile, copyFile} = require('fs');
+const { rm, mkdir, readdir } = require('fs/promises');
 let assetsFolder = path.join(__dirname, 'assets');
 let assetsFolderCopy = path.join(__dirname, 'project-dist', 'assets') ;
 const styleFolder = path.join(__dirname, 'styles');
@@ -57,6 +57,9 @@ async function copyHTML() {
     appendFile(path.join(__dirname, 'project-dist', 'index.html'), template, (err) => {if (err) throw err})
 }
 
-    copyDir(assetsFolder, assetsFolderCopy);
-    copyCss();
-    copyHTML();
+(async () => {
+    await rm(path.join(__dirname, 'project-dist'), {recursive: true, force: true});
+    await copyDir(assetsFolder, assetsFolderCopy);
+    await copyCss();
+    await copyHTML();
+})(); 
